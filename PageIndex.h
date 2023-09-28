@@ -113,10 +113,7 @@ a:hover, a:active {
         <br><br>
         <label> 180 Degree Angle </label>
         <button type="button" onclick="sendData(4)" class="btn">180 Degree</button>
-
-      <label><span id="isiStatusSER1"></span></label>
-      <label><span id="SERstate1"></span></label>
-
+      
     </div>
     
     <script>
@@ -128,19 +125,20 @@ a:hover, a:active {
           }
         };
         xhttp.open("GET", "setPOS?servoPOS=" + pos, true);
+        console.log(xhttp);
         xhttp.send();
       }
 
-      function sendData(StatusSer1) {
+      function sendData(statusServo) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             console.log("Resp from server: ", this.responseText);
-            document.getElementById("SERstate1").innerHTML = this.responseText;
           }
         };
 
-        xhttp.open("GET", "setSER1?;SERstate1=" + StatusSer1, true);
+        xhttp.open("GET", "setSER1?;SERstate1=" + statusServo, true);
+        console.log(xhttp);
         xhttp.send();
       }
 
@@ -149,7 +147,6 @@ a:hover, a:active {
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             console.log("Resp from server: ", this.responseText);
-            document.getElementById("isiStatusSER1").innerHTML = this.responseText;
           }
         };
         xhttp.open("put", "readSER1", true);

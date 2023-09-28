@@ -8,9 +8,6 @@
 
 #define ServoPort D5   //--> Defining Servo Port
 
-#define LED1  D4   //-->Defining a Simple LED
-
-
 #ifndef STASSID
 #define STASSID "Baeta"
 #define STAPSK "senha123456789"
@@ -18,8 +15,6 @@
 
 const char* ssid = STASSID;
 const char* password = STAPSK;
-//const char* ssid = "MyCon";
-//const char* password = "senha123456789";
 
 Servo myservo;
 
@@ -52,7 +47,7 @@ void controlServo() {
   int pos;
   if (t_state == "1") {
     SERstate1 = pos;
-    controlLED1();
+
     for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
       // in steps of 1 degree
       myservo.write(pos);              // tell servo to go to position in variable 'pos'
@@ -62,22 +57,19 @@ void controlServo() {
       myservo.write(pos);              // tell servo to go to position in variable 'pos'
       delay(15);                       // waits 15ms for the servo to reach the position
     }
-    controlLED1();
+ 
   }
   else if (t_state == "2") {
     SERstate1 = pos;
     myservo.write(0);
-    controlLED1();
   }
   else if (t_state == "3") {
     SERstate1 = pos;
     myservo.write(90);
-    controlLED1();
   }
   else if (t_state == "4") {
     SERstate1 = pos;
     myservo.write(180);
-    controlLED1();
   }
   else {
     SERstate1 = "OFF";
@@ -89,19 +81,11 @@ void statusSER() {
   server.send(200, "text/plane", SERstate1);
 }
 
-void controlLED1() {
-  digitalWrite(LED1, HIGH);
-  delay(200);
-  digitalWrite(LED1, LOW);
-  delay(200);
-}
-
 void setup() {
   Serial.begin(115200);
   delay(500);
   
   myservo.attach(ServoPort, 500, 2400);
-  pinMode(LED1, OUTPUT);
   
   Serial.print("Trying to connect on: ");
   Serial.print(ssid);
