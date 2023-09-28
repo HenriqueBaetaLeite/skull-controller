@@ -34,7 +34,7 @@ void handleRoot() {
 void handleServo() {
   String servoRespPosition = server.arg("servoPOS");
   int servoPosition = servoRespPosition.toInt();
-  myservo.write(servoPosition);   //--> Move the servo motor according to the POS value
+  myservo.write(servoPosition);
   delay(15);
   Serial.print("Servo Angle:");
   Serial.println(servoPosition);
@@ -48,16 +48,14 @@ void controlServo() {
   if (t_state == "1") {
     SERstate1 = pos;
 
-    for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-      // in steps of 1 degree
-      myservo.write(pos);              // tell servo to go to position in variable 'pos'
-      delay(15);                       // waits 15ms for the servo to reach the position
+    for (pos = 0; pos <= 180; pos += 1) {
+      myservo.write(pos);
+      delay(15);
     }
-    for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-      myservo.write(pos);              // tell servo to go to position in variable 'pos'
-      delay(15);                       // waits 15ms for the servo to reach the position
+    for (pos = 180; pos >= 0; pos -= 1) {
+      myservo.write(pos);
+      delay(15);
     }
- 
   }
   else if (t_state == "2") {
     SERstate1 = pos;
@@ -84,9 +82,9 @@ void statusSER() {
 void setup() {
   Serial.begin(115200);
   delay(500);
-  
+
   myservo.attach(ServoPort, 500, 2400);
-  
+
   Serial.print("Trying to connect on: ");
   Serial.print(ssid);
   Serial.print("...");
