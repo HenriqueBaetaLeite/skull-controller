@@ -32,12 +32,12 @@ void handleRoot() {
 //Procedure for handling servo control
 
 void handleServo() {
-  String POS = server.arg("servoPOS");
-  int pos = POS.toInt();
-  myservo.write(pos);   //--> Move the servo motor according to the POS value
+  String servoRespPosition = server.arg("servoPOS");
+  int servoPosition = servoRespPosition.toInt();
+  myservo.write(servoPosition);   //--> Move the servo motor according to the POS value
   delay(15);
   Serial.print("Servo Angle:");
-  Serial.println(pos);
+  Serial.println(servoPosition);
   server.send(200, "text/plane", "");
 }
 
