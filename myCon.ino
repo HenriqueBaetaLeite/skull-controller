@@ -2,6 +2,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <Servo.h>
 
 #ifndef STASSID
 #define STASSID "***"
@@ -12,6 +13,8 @@ const char* ssid = STASSID;
 const char* password = STAPSK;
 
 ESP8266WebServer server(80);
+
+Servo myservo;
 
 const int led = LED_BUILTIN;
 
@@ -90,13 +93,13 @@ void handlePostPlain() {
     server.send(200, "text/html", index_html);
     Serial.print("Aqui o valor gerado pelo client:");
     Serial.println(valueFromClientPost);
-    String valueMouth = valueFromClientPost.substring(9, 11);
+    String valueMouth = valueFromClientPost.substring(10, 12);
     Serial.print("somente o range: ");
     Serial.println(valueMouth);
     int valueMouthMapped = map(valueMouth.toInt(), 0, 40, 0, 180);
     Serial.print("valueMapped: ");
     Serial.println(valueMouthMapped);
-//    myServo.write(valueMouthMapped);
+    myservo.write(valueMouthMapped);
   }
 }
 
@@ -124,6 +127,7 @@ void handleNotFound() {
 void setup(void) {
   pinMode(led, OUTPUT);
   digitalWrite(led, LOW);
+  myservo.attach(D1);
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
@@ -145,17 +149,9 @@ void setup(void) {
 
   server.on("/", handleRoot);
 
-  server.on("/inline", []() {
-    server.send(200, "text/plain", "this works as well");
-  });
-
   server.on("/baeta", handleBaeta);
 
   server.on("/baetapost", handlePostPlain);
-
-  server.on("/amor", []() {
-    server.send(200, "text/plain", "Thatiane, eu te amo muito! Obrigado por tudo!");
-  });
 
   server.onNotFound(handleNotFound);
 
