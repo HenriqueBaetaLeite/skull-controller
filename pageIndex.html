@@ -76,23 +76,23 @@
         type="range"
         min="0"
         max="180"
-        value="50"
+        value="90"
         class="slider"
         id="range-slider"
       />
       <p>ângulo da boca: <span id="range-value"></span></p>
       <br /><br />
       <label>Função abrir e fechar mandíbula</label>
-      <button type="button" onclick="sendData(1)" class="btn">Start</button>
+      <button type="button" onclick="setSkullNumberFunction(1)" class="btn">Start</button>
       <br /><br />
       <label>Boca aberta</label>
-      <button type="button" onclick="sendData(2)" class="btn">abrir</button>
+      <button type="button" onclick="setSkullNumberFunction(2)" class="btn">abrir</button>
       <br /><br />
       <label>Boca normal</label>
-      <button type="button" onclick="sendData(3)" class="btn">normal</button>
+      <button type="button" onclick="setSkullNumberFunction(3)" class="btn">normal</button>
       <br /><br />
       <label>Boca fechada</label>
-      <button type="button" onclick="sendData(4)" class="btn">
+      <button type="button" onclick="setSkullNumberFunction(4)" class="btn">
         fechar
       </button>
     </div>
@@ -109,14 +109,13 @@
         xhttp.send();
       }
 
-      function sendData(statusServo) {
+      function setSkullNumberFunction(statusServo) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             console.log("Resp from server: ", this.response);
           }
         };
-
         xhttp.open("GET", "setSER1?;servoState=" + statusServo, true);
         xhttp.send();
       }
@@ -134,13 +133,13 @@
       }
 
       const slider = document.getElementById("range-slider");
-      const output = document.getElementById("range-value");
+      const rangeSpan = document.getElementById("range-value");
 
-      output.innerHTML = slider.value;
+      rangeSpan.innerHTML = slider.value;
 
       slider.oninput = function () {
-        output.innerHTML = this.value;
-        sendRangeData(output.innerHTML);
+        rangeSpan.innerHTML = this.value;
+        sendRangeData(rangeSpan.innerHTML);
       };
     </script>
   </body>
