@@ -124,7 +124,7 @@ a:hover, a:active {
             console.log("Resp from server: ", this.responseText);
           }
         };
-        xhttp.open("GET", "setPOS?servoPOS=" + pos, true);
+        xhttp.open("GET", "setRange?servoRange=" + pos, true);
         console.log(xhttp);
         xhttp.send();
       }
@@ -137,7 +137,7 @@ a:hover, a:active {
           }
         };
 
-        xhttp.open("GET", "setSER1?;SERstate1=" + statusServo, true);
+        xhttp.open("GET", "setSER1?;servoState=" + statusServo, true);
         console.log(xhttp);
         xhttp.send();
       }
@@ -150,6 +150,7 @@ a:hover, a:active {
           }
         };
         xhttp.open("put", "readSER1", true);
+        console.log("Quando será q entro aqui??");
         xhttp.send();
       }
 

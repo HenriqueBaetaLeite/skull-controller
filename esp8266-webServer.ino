@@ -4,9 +4,9 @@
 #include <ESP8266mDNS.h>
 #include <Servo.h>
 
-#include "PageIndex.h"; //--> Include the contents of the User Interface Web page from website, stored in the same folder as the .ino file  
+#include "PageIndex.h";
 
-#define ServoPort D5   //--> Defining Servo Port
+#define ServoPort D5
 
 #ifndef STASSID
 #define STASSID "Baeta"
@@ -20,7 +20,7 @@ Servo myservo;
 
 ESP8266WebServer server(80);
 
-String SERstate1 = "OFF";
+String servoState = "OFF";
 
 //This routine is executed when you open NodeMCU ESP8266 IP Address in browser
 
@@ -32,7 +32,7 @@ void handleRoot() {
 //Procedure for handling servo control
 
 void handleServo() {
-  String servoRespPosition = server.arg("servoPOS");
+  String servoRespPosition = server.arg("servoRange");
   int servoPosition = servoRespPosition.toInt();
   myservo.write(servoPosition);
   delay(15);
@@ -42,11 +42,11 @@ void handleServo() {
 }
 
 void controlServo() {
-  String t_state = server.arg("SERstate1");
+  String t_state = server.arg("servoState");
   Serial.println(t_state);
   int pos;
   if (t_state == "1") {
-    SERstate1 = pos;
+    servoState = pos;
 
     for (pos = 0; pos <= 180; pos += 1) {
       myservo.write(pos);
@@ -58,25 +58,25 @@ void controlServo() {
     }
   }
   else if (t_state == "2") {
-    SERstate1 = pos;
+    servoState = pos;
     myservo.write(0);
   }
   else if (t_state == "3") {
-    SERstate1 = pos;
+    servoState = pos;
     myservo.write(90);
   }
   else if (t_state == "4") {
-    SERstate1 = pos;
+    servoState = pos;
     myservo.write(180);
   }
   else {
-    SERstate1 = "OFF";
+    servoState = "OFF";
   }
-  server.send(200, "text/plane", SERstate1);
+  server.send(200, "text/plane", servoState);
 }
 
 void statusSER() {
-  server.send(200, "text/plane", SERstate1);
+  server.send(200, "text/plane", servoState);
 }
 
 void setup() {
@@ -108,7 +108,7 @@ void setup() {
 
   //Initialize Webserver
   server.on("/", handleRoot);
-  server.on("/setPOS", handleServo);
+  server.on("/setRange", handleServo);
   server.on("/setSER1", controlServo);
   server.on("/readSER1", statusSER);
   server.begin();
