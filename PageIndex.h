@@ -10,7 +10,7 @@ const char MAIN_page[] PROGMEM = R"=====(
         margin: 0;
         text-align: center;
       }
-      
+
       .slidecontainer {
         width: 100%;
       }
@@ -40,7 +40,7 @@ const char MAIN_page[] PROGMEM = R"=====(
         background: rgb(26, 182, 202);
         cursor: pointer;
       }
-/* 
+      /* 
       .slider::-moz-range-thumb {
         width: 25px;
         height: 25px;
@@ -77,13 +77,19 @@ const char MAIN_page[] PROGMEM = R"=====(
       <p>ângulo da boca: <span id="range-value"></span></p>
       <br /><br />
       <label>Função abrir e fechar mandíbula</label>
-      <button type="button" onclick="setSkullNumberFunction(1)" class="btn">Start</button>
+      <button type="button" onclick="setSkullNumberFunction(1)" class="btn">
+        Start
+      </button>
       <br /><br />
       <label>Boca aberta</label>
-      <button type="button" onclick="setSkullNumberFunction(2)" class="btn">abrir</button>
+      <button type="button" onclick="setSkullNumberFunction(2)" class="btn">
+        abrir
+      </button>
       <br /><br />
       <label>Boca normal</label>
-      <button type="button" onclick="setSkullNumberFunction(3)" class="btn">normal</button>
+      <button type="button" onclick="setSkullNumberFunction(3)" class="btn">
+        normal
+      </button>
       <br /><br />
       <label>Boca fechada</label>
       <button type="button" onclick="setSkullNumberFunction(4)" class="btn">
@@ -111,18 +117,6 @@ const char MAIN_page[] PROGMEM = R"=====(
           }
         };
         xhttp.open("GET", "setServoFunction?;servoState=" + statusServo, true);
-        xhttp.send();
-      }
-
-      function getDataSER1() {
-        const xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            console.log("Resp from server: ", this.responseText);
-          }
-        };
-        xhttp.open("put", "readSER1", true);
-        console.log("Quando será q entro aqui??");
         xhttp.send();
       }
 
