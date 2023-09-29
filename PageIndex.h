@@ -4,6 +4,7 @@ const char MAIN_page[] PROGMEM = R"=====(
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
     <style>
       * {
         box-sizing: border-box;
