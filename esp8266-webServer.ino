@@ -13,8 +13,8 @@
 #define STAPSK "senha123456789"
 #endif
 
-const char* ssid = STASSID;
-const char* password = STAPSK;
+const char *ssid = STASSID;
+const char *password = STAPSK;
 
 Servo myservo;
 
@@ -22,16 +22,18 @@ ESP8266WebServer server(80);
 
 String servoState = "OFF";
 
-//This routine is executed when you open NodeMCU ESP8266 IP Address in browser
+// This routine is executed when you open NodeMCU ESP8266 IP Address in browser
 
-void handleRoot() {
+void handleRoot()
+{
   String main = MAIN_page;
   server.send(200, "text/html", main);
 }
 
-//Procedure for handling servo control
+// Procedure for handling servo control
 
-void handleServo() {
+void handleServo()
+{
   String servoRespPosition = server.arg("servoRange");
   int servoPosition = servoRespPosition.toInt();
   myservo.write(servoPosition);
@@ -41,45 +43,50 @@ void handleServo() {
   server.send(200, "text/plain", "");
 }
 
-void controlServo() {
+void controlServo()
+{
   String t_state = server.arg("servoState");
   Serial.println(t_state);
   int pos;
-  if (t_state == "1") {
+  if (t_state == "1")
+  {
     servoState = pos;
 
-    for (pos = 0; pos <= 180; pos += 1) {
+    for (pos = 0; pos <= 180; pos += 1)
+    {
       myservo.write(pos);
       delay(15);
     }
-    for (pos = 180; pos >= 0; pos -= 1) {
+    for (pos = 180; pos >= 0; pos -= 1)
+    {
       myservo.write(pos);
       delay(15);
     }
   }
-  else if (t_state == "2") {
+  else if (t_state == "2")
+  {
     servoState = pos;
     myservo.write(0);
   }
-  else if (t_state == "3") {
+  else if (t_state == "3")
+  {
     servoState = pos;
     myservo.write(90);
   }
-  else if (t_state == "4") {
+  else if (t_state == "4")
+  {
     servoState = pos;
     myservo.write(180);
   }
-  else {
+  else
+  {
     servoState = "OFF";
   }
   server.send(200, "text/plain", servoState);
 }
 
-void statusSER() {
-  server.send(200, "text/plain", servoState);
-}
-
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   delay(500);
 
@@ -93,7 +100,8 @@ void setup() {
   WiFi.begin(ssid, password);
 
   // Wait for connection
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED)
+  {
     delay(500);
     Serial.print(".");
   }
@@ -102,19 +110,20 @@ void setup() {
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (MDNS.begin("esp8266")) {
+  if (MDNS.begin("esp8266"))
+  {
     Serial.println("MDNS responder started");
   }
 
-  //Initialize Webserver
+  // Initialize Webserver
   server.on("/", handleRoot);
   server.on("/setRange", handleServo);
   server.on("/setServoFunction", controlServo);
-  server.on("/readSER1", statusSER);
   server.begin();
   Serial.println("HTTP server started");
 }
 
-void loop() {
+void loop()
+{
   server.handleClient();
 }
