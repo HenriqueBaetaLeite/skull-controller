@@ -3,15 +3,14 @@ const char MAIN_page[] PROGMEM = R"=====(
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      html {
-        font-family: Arial;
-        display: inline-block;
-        margin: 0px auto;
+      * {
+        box-sizing: border-box;
+        margin: 0;
         text-align: center;
       }
-
+      
       .slidecontainer {
         width: 100%;
       }
@@ -24,15 +23,14 @@ const char MAIN_page[] PROGMEM = R"=====(
         background: rgb(102, 230, 17);
         outline: none;
         opacity: 0.5;
-        -webkit-transition: .2s;
-        transition: opacity .2s;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
       }
 
       .slider:hover {
         opacity: 2;
-
       }
-      
+
       .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -42,103 +40,77 @@ const char MAIN_page[] PROGMEM = R"=====(
         background: rgb(26, 182, 202);
         cursor: pointer;
       }
-      
+/* 
       .slider::-moz-range-thumb {
         width: 25px;
         height: 25px;
         border-radius: 50%;
-        background: #4CAF50;
+        background: #4caf50;
         cursor: pointer;
+      } */
+
+      .btn {
+        border-radius: 15px;
+        width: 8%;
+        height: 25px;
+        cursor: pointer;
+        background: #bdbdbd;
+        color: rgb(255, 255, 255);
+        background-color: #8a8889;
+        color: white;
       }
-     
-         /* Style the botton start stop */
-   .btn{
-      position: relative;
-      border-radius: 15px 15px 15px 15px;
-      width: 8%;
-      height: 25px;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      background: #fa1cb7;
-      color: rgb(255, 255, 255);
-      background-color: #fa1cb7;
-      color: white;
-      padding: 14px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-   }
-
-   a:link, a:visited {
-  background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a:hover, a:active {
-  background-color: red;
-}
-       
-        /* Style the footer */
-   footer {
-      background-color: rgb(43, 57, 255);
-      padding: 8px;
-      text-align: center;
-      color: rgb(0, 255, 21);
-      font-family: Comic Sans MS;
-   }
-
     </style>
   </head>
-  
+
   <body>
     <h1>The Skull Controller</h1>
-    <br><br>
+    <br /><br />
     <div class="slidecontainer">
-      <input type="range" min="0" max="180" value="50" class="slider" id="range-slider">
-      <p>Servo angle: <span id="demo"></span></p>
-       <br><br>
-      <label> Servo Sweep </label>
-       <button type="button" onclick="sendData(1)" class="btn">Start</button>
-        <br><br>
-        <label> 0 Degree Angle </label>
-        <button type="button" onclick="sendData(2)" class="btn">0 Degree</button>
-         <br><br>
-        <label> 90 Degree Angle </label>
-        <button type="button" onclick="sendData(3)" class="btn">90 Degree</button>
-        <br><br>
-        <label> 180 Degree Angle </label>
-        <button type="button" onclick="sendData(4)" class="btn">180 Degree</button>
-      
+      <input
+        type="range"
+        min="0"
+        max="180"
+        value="90"
+        class="slider"
+        id="range-slider"
+      />
+      <p>ângulo da boca: <span id="range-value"></span></p>
+      <br /><br />
+      <label>Função abrir e fechar mandíbula</label>
+      <button type="button" onclick="setSkullNumberFunction(1)" class="btn">Start</button>
+      <br /><br />
+      <label>Boca aberta</label>
+      <button type="button" onclick="setSkullNumberFunction(2)" class="btn">abrir</button>
+      <br /><br />
+      <label>Boca normal</label>
+      <button type="button" onclick="setSkullNumberFunction(3)" class="btn">normal</button>
+      <br /><br />
+      <label>Boca fechada</label>
+      <button type="button" onclick="setSkullNumberFunction(4)" class="btn">
+        fechar
+      </button>
     </div>
-    
+
     <script>
-     function sendRangeData(pos) {
+      function sendRangeData(position) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             console.log("Resp from server: ", this.responseText);
           }
         };
-        xhttp.open("GET", "setRange?servoRange=" + pos, true);
-        console.log(xhttp);
+        xhttp.open("GET", "setRange?servoRange=" + position, true);
         xhttp.send();
       }
 
-      function sendData(statusServo) {
+      function setSkullNumberFunction(statusServo) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            console.log("Resp from server: ", this.responseText);
+            console.log("Resp from server: ", this.response);
           }
         };
-
-        xhttp.open("GET", "setSER1?;servoState=" + statusServo, true);
-        console.log(xhttp);
+        xhttp.open("GET", "setServoFunction?;servoState=" + statusServo, true);
         xhttp.send();
       }
 
@@ -155,28 +127,16 @@ a:hover, a:active {
       }
 
       const slider = document.getElementById("range-slider");
-      const output = document.getElementById("demo");
+      const rangeSpan = document.getElementById("range-value");
 
-      output.innerHTML = slider.value;
+      rangeSpan.innerHTML = slider.value;
 
       slider.oninput = function () {
-        output.innerHTML = this.value;
-        sendRangeData(output.innerHTML);
-};
-
-
+        rangeSpan.innerHTML = this.value;
+        sendRangeData(rangeSpan.innerHTML);
+      };
     </script>
-     <br><br><br><br>
-     <footer>
-     <p>
-       By ElecoTecoz</br>
-      </p>
-     <p>Pls Subscribe my Channel</p>
-     <a href="https://www.youtube.com/channel/UCdGUOMS_ufSE8xVxVRf8SGg" target="_blank">Subscribe</a>
-
-    </footer>
-
   </body>
-
 </html>
+
 )=====";

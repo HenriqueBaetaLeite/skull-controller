@@ -38,7 +38,7 @@ void handleServo() {
   delay(15);
   Serial.print("Servo Angle:");
   Serial.println(servoPosition);
-  server.send(200, "text/plane", "");
+  server.send(200, "text/plain", "");
 }
 
 void controlServo() {
@@ -72,11 +72,11 @@ void controlServo() {
   else {
     servoState = "OFF";
   }
-  server.send(200, "text/plane", servoState);
+  server.send(200, "text/plain", servoState);
 }
 
 void statusSER() {
-  server.send(200, "text/plane", servoState);
+  server.send(200, "text/plain", servoState);
 }
 
 void setup() {
@@ -109,7 +109,7 @@ void setup() {
   //Initialize Webserver
   server.on("/", handleRoot);
   server.on("/setRange", handleServo);
-  server.on("/setSER1", controlServo);
+  server.on("/setServoFunction", controlServo);
   server.on("/readSER1", statusSER);
   server.begin();
   Serial.println("HTTP server started");
