@@ -34,8 +34,8 @@ void handleRoot()
 
 void handleServo()
 {
-  String servoRespPosition = server.arg("servoRange");
-  int servoPosition = servoRespPosition.toInt();
+  String servoRangePosition = server.arg("servoRange");
+  int servoPosition = servoRangePosition.toInt();
   myservo.write(servoPosition);
   delay(15);
   Serial.print("Servo Angle:");
