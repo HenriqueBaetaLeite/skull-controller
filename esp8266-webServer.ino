@@ -47,35 +47,35 @@ void controlServo()
 {
   String t_state = server.arg("servoState");
   Serial.println(t_state);
-  int pos;
+  int servoPosition;
   if (t_state == "1")
   {
-    servoState = pos;
+    servoState = servoPosition;
 
-    for (pos = 0; pos <= 180; pos += 1)
+    for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
     {
-      myservo.write(pos);
+      myservo.write(servoPosition);
       delay(30);
     }
-    for (pos = 180; pos >= 0; pos -= 1)
+    for (servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
     {
-      myservo.write(pos);
+      myservo.write(servoPosition);
       delay(30);
     }
   }
   else if (t_state == "2")
   {
-    servoState = pos;
+    servoState = servoPosition;
     myservo.write(0);
   }
   else if (t_state == "3")
   {
-    servoState = pos;
+    servoState = servoPosition;
     myservo.write(90);
   }
   else if (t_state == "4")
   {
-    servoState = pos;
+    servoState = servoPosition;
     myservo.write(180);
   }
   else
