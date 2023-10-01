@@ -3,6 +3,9 @@ const char MAIN_page[] PROGMEM = R"=====(
 <!DOCTYPE html>
 <html>
   <head>
+    <title>The Skull Controller</title>
+    <meta name="author" content="Henrique Baêta" />
+    <meta name="language" content="English" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <style>
@@ -52,7 +55,7 @@ const char MAIN_page[] PROGMEM = R"=====(
 
       .btn {
         border-radius: 15px;
-        width: 8%;
+        /* width: 10%; */
         height: 25px;
         cursor: pointer;
         background: #bdbdbd;
@@ -77,24 +80,24 @@ const char MAIN_page[] PROGMEM = R"=====(
       />
       <p>ângulo da boca: <span id="range-value"></span></p>
       <br /><br />
-      <label>Função abrir e fechar mandíbula</label>
+
       <button type="button" onclick="setSkullNumberFunction(1)" class="btn">
-        Start
+        Open/Close
       </button>
       <br /><br />
-      <label>Boca aberta</label>
+
       <button type="button" onclick="setSkullNumberFunction(2)" class="btn">
-        abrir
+        Open
       </button>
       <br /><br />
-      <label>Boca normal</label>
+
       <button type="button" onclick="setSkullNumberFunction(3)" class="btn">
-        normal
+        Half
       </button>
       <br /><br />
-      <label>Boca fechada</label>
+
       <button type="button" onclick="setSkullNumberFunction(4)" class="btn">
-        fechar
+        Close
       </button>
     </div>
 
@@ -117,7 +120,11 @@ const char MAIN_page[] PROGMEM = R"=====(
             console.log("Resp from server: ", this.response);
           }
         };
-        xhttp.open("GET", "setServoFunction?setFunction=" + numberOfFunction, true);
+        xhttp.open(
+          "GET",
+          "setServoFunction?setFunction=" + numberOfFunction,
+          true
+        );
         xhttp.send();
       }
 
@@ -142,6 +149,5 @@ const char MAIN_page[] PROGMEM = R"=====(
     </script>
   </body>
 </html>
-
 
 )=====";
