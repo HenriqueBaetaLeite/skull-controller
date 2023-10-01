@@ -17,30 +17,8 @@
         width: 100%;
       }
 
-      .slider {
-        -webkit-appearance: none;
-        width: 50%;
-        height: 15px;
-        border-radius: 5px;
-        background: rgb(102, 230, 17);
-        outline: none;
-        opacity: 0.5;
-        -webkit-transition: 0.2s;
-        transition: opacity 0.2s;
-      }
-
       .slider:hover {
         opacity: 2;
-      }
-
-      .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background: rgb(26, 182, 202);
-        cursor: pointer;
       }
 
       .btn {
@@ -56,6 +34,7 @@
       .btn:hover {
         background-color: #555;
       }
+
     </style>
   </head>
 
@@ -71,7 +50,7 @@
         class="slider"
         id="range-slider"
       />
-      <p>ângulo da boca: <span id="range-value"></span></p>
+      <p>Mouth angle: <span id="range-value"></span></p>
       <br /><br />
 
       <button type="button" onclick="setSkullNumberFunction(1)" class="btn">
