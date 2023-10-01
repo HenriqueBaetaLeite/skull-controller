@@ -45,10 +45,10 @@ void handleServo()
 
 void controlServo()
 {
-  String t_state = server.arg("servoState");
-  Serial.println(t_state);
+  String chosenFunction = server.arg("setFunction");
+  Serial.println(chosenFunction);
   int servoPosition;
-  if (t_state == "1")
+  if (chosenFunction == "1")
   {
     servoState = servoPosition;
 
@@ -63,17 +63,17 @@ void controlServo()
       delay(30);
     }
   }
-  else if (t_state == "2")
+  else if (chosenFunction == "2")
   {
     servoState = servoPosition;
     myservo.write(0);
   }
-  else if (t_state == "3")
+  else if (chosenFunction == "3")
   {
     servoState = servoPosition;
     myservo.write(90);
   }
-  else if (t_state == "4")
+  else if (chosenFunction == "4")
   {
     servoState = servoPosition;
     myservo.write(180);

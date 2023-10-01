@@ -108,23 +108,23 @@
         xhttp.send();
       }
 
-      function setSkullNumberFunction(statusServo) {
+      function setSkullNumberFunction(numberOfFunction) {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             console.log("Resp from server: ", this.response);
           }
         };
-        xhttp.open("GET", "setServoFunction?;servoState=" + statusServo, true);
+        xhttp.open("GET", "setServoFunction?setFunction=" + numberOfFunction, true);
         xhttp.send();
       }
 
       // Teste para saber se de fato vou trocar o XMLHttpRequest pelo fetch.
 
-      function setFunctionFetch(statusServo) {
-        fetch("setServoFunction?servoState=" + statusServo)
+      function setFunctionFetch(numberOfFunction) {
+        fetch("setServoFunction?setFunction=" + numberOfFunction)
           .then((response) => response.json())
-          .then((data) => console.log(data));
+          .then((data) => console.log("Here I go!", data));
       }
       setFunctionFetch(2);
 
