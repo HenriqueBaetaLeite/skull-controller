@@ -119,6 +119,15 @@
         xhttp.send();
       }
 
+      // Teste para saber se de fato vou trocar o XMLHttpRequest pelo fetch.
+
+      function setFunctionFetch(statusServo) {
+        fetch("setServoFunction?servoState=" + statusServo)
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      }
+      setFunctionFetch(2);
+
       const slider = document.getElementById("range-slider");
       const rangeSpan = document.getElementById("range-value");
 
