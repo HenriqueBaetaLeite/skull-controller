@@ -23,14 +23,21 @@
         appearance: none;
       }
 
+      input[type="range"]::-webkit-slider-runnable-track {
+        background: #000000;
+        border-radius: 10px;
+      }
+
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         /* creating a custom design */
+        cursor: pointer;
         height: 25px;
         width: 25px;
         background-image: url("./skull.png");
         background-size: cover;
+        transition: 0.2s ease-in-out;
       }
 
       p {
