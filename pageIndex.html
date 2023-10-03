@@ -16,12 +16,18 @@
       body {
         box-sizing: border-box;
         margin: 0;
-        text-align: center;
         background-color: #a6a6a6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
-      .slide-container {
-        width: 100%;
+      .group-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
       input[type="range"] {
@@ -44,26 +50,13 @@
 
       p,
       h1,
-      h4 {
-        margin: 10px;
-      }
-
-      h1 {
-        margin-top: 30px;
-      }
-
-      .button-container {
-        margin: 10px;
-        ;
+      h5 {
+        margin-top: 20px;
       }
 
       .my-btn {
         margin: 7px;
         border-radius: 12px;
-      }
-
-      .btns:hover {
-        background-color: #555;
       }
     </style>
   </head>
@@ -73,8 +66,8 @@
 
     <!-- <img src="./skull.png" alt="skull_image" width="60px" /> -->
 
-    <div class="slide-container">
-      <p>Mouth angle: <span id="range-value"></span></p>
+    <div" class="group-container">
+      <h5>Set mouth angle: <span id="range-value"></span></h5>
 
       <input
         type="range"
@@ -86,21 +79,37 @@
       />
     </div>
 
-    <section class="button-container">
-      <h4>Skull functions</h4>
-      <button type="button" onclick="setSkullNumberFunction(1)" class="btn btn-dark my-btn">
+    <section class="group-container">
+      <h5>Set skull functions</h4>
+      <button
+        type="button"
+        onclick="setSkullNumberFunction(1)"
+        class="btn btn-outline-dark my-btn"
+      >
         Open/Close
       </button>
 
-      <button type="button" onclick="setSkullNumberFunction(2)" class="btn btn-dark my-btn">
+      <button
+        type="button"
+        onclick="setSkullNumberFunction(2)"
+        class="btn btn-outline-dark my-btn"
+      >
         Open
       </button>
 
-      <button type="button" onclick="setSkullNumberFunction(3)" class="btn btn-dark my-btn">
+      <button
+        type="button"
+        onclick="setSkullNumberFunction(3)"
+        class="btn btn-outline-dark my-btn"
+      >
         Half
       </button>
 
-      <button type="button" onclick="setSkullNumberFunction(4)" class="btn btn-dark my-btn">
+      <button
+        type="button"
+        onclick="setSkullNumberFunction(4)"
+        class="btn btn-outline-dark my-btn"
+      >
         Close
       </button>
     </section>
