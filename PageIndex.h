@@ -1,5 +1,4 @@
-const char MAIN_page[] PROGMEM = R"=====(
-
+const char MAIN_page[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,6 +69,7 @@ const char MAIN_page[] PROGMEM = R"=====(
     <h1>The Skull Controller</h1>
 
     <img src="./skull.png" alt="skull_image" width="60px" />
+    <img src="https://github.com/HenriqueBaetaLeite/skull-controller/blob/layout-v2/skull.png" alt="skull_image2" width="60px" />
     <div class="slide-container">
       <p>Mouth angle: <span id="range-value"></span></p>
 
@@ -151,4 +151,4 @@ const char MAIN_page[] PROGMEM = R"=====(
   </body>
 </html>
 
-)=====";
+)rawliteral";
