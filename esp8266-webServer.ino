@@ -22,7 +22,19 @@ ESP8266WebServer server(80);
 
 String servoState = "OFF";
 
-// This routine is executed when you open NodeMCU ESP8266 IP Address in browser
+void functionOpenClose(servoPosition: int)
+{
+  for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
+  {
+    myservo.write(servoPosition);
+    delay(30);
+  }
+  for (servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
+  {
+    myservo.write(servoPosition);
+    delay(30);
+  }
+}
 
 void handleRoot()
 {
@@ -30,16 +42,12 @@ void handleRoot()
   server.send(200, "text/html", main);
 }
 
-// Procedure for handling servo control
-
 void handleServo()
 {
   String servoRangePosition = server.arg("servoRange");
   int servoPosition = servoRangePosition.toInt();
   myservo.write(servoPosition);
   delay(15);
-  Serial.print("Servo Angle:");
-  Serial.println(servoPosition);
   server.send(200, "text/plain", "");
 }
 
@@ -51,17 +59,7 @@ void controlServo()
   if (chosenFunction == "1")
   {
     servoState = servoPosition;
-
-    for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
-    {
-      myservo.write(servoPosition);
-      delay(30);
-    }
-    for (servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
-    {
-      myservo.write(servoPosition);
-      delay(30);
-    }
+    functionOpenClose(servoPosition);
   }
   else if (chosenFunction == "2")
   {
@@ -99,7 +97,6 @@ void setup()
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
-  // Wait for connection
   while (WiFi.status() != WL_CONNECTED)
   {
     delay(500);
