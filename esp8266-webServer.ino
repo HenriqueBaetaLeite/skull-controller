@@ -22,17 +22,17 @@ ESP8266WebServer server(80);
 
 String servoState = "OFF";
 
-void functionOpenClose(servoPosition: int)
+void functionOpenClose(servoPosition: int, delayTime: int = 30)
 {
   for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
   {
     myservo.write(servoPosition);
-    delay(30);
+    delay(delayTime);
   }
   for (servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
   {
     myservo.write(servoPosition);
-    delay(30);
+    delay(delayTime);
   }
 }
 
@@ -75,6 +75,12 @@ void controlServo()
   {
     servoState = servoPosition;
     myservo.write(180);
+  }
+  else if (chosenFunction == "5")
+  {
+    servoState = servoPosition;
+    int superSlow = 5;
+    functionOpenClose(servoPosition, superSlow);
   }
   else
   {
