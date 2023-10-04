@@ -72,7 +72,7 @@ void controlServo()
   }
   else if (chosenFunction == "5")
   {
-    int superSlow = 50;
+    int superSlow = 100;
     openClose(superSlow);
   }
   server.send(200, "text/plain", "");
