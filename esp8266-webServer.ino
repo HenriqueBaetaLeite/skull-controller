@@ -20,8 +20,6 @@ Servo myservo;
 
 ESP8266WebServer server(80);
 
-String servoState = "OFF";
-
 void functionOpenClose(delayTime: int = 30)
 {
   for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
