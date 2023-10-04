@@ -33,20 +33,24 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
 
       input[type="range"] {
         -webkit-appearance: none;
+        width: 100%;
       }
 
       input[type="range"]::-webkit-slider-runnable-track {
         background: #000000;
-        border-radius: 10px;
+        /* border-radius: 10px; */
       }
 
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        border: none;
-        height: 12px;
-        width: 12px;
-        border-radius: 50%;
-        background: goldenrod;
+        appearance: none;
+        /* creating a custom design */
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+        background-image: url("https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png");
+        background-size: cover;
+        transition: 0.2s ease-in-out;
       }
 
       p,
@@ -64,7 +68,7 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
 
   <body>
     <h1>The Skull Controller</h1>
-
+    
     <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="60px" />
 
     <div" class="group-container">
