@@ -20,8 +20,9 @@ Servo myservo;
 
 ESP8266WebServer server(80);
 
-void functionOpenClose(delayTime: int = 30)
+void openClose(int delayTime = 30)
 {
+  int servoPosition = 0;
   for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
   {
     myservo.write(servoPosition);
@@ -55,7 +56,7 @@ void controlServo()
   Serial.println(chosenFunction);
   if (chosenFunction == "1")
   {
-    functionOpenClose();
+    openClose();
   }
   else if (chosenFunction == "2")
   {
@@ -72,11 +73,7 @@ void controlServo()
   else if (chosenFunction == "5")
   {
     int superSlow = 50;
-    functionOpenClose(servoPosition, superSlow);
-  }
-  else
-  {
-    servoState = "OFF";
+    openClose(superSlow);
   }
   server.send(200, "text/plain", "");
 }
