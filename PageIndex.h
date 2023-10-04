@@ -65,8 +65,7 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
   <body>
     <h1>The Skull Controller</h1>
 
-    <!-- <img src="./skull.png" alt="skull_image" width="60px" /> -->
-    <img src="https://m.media-amazon.com/images/I/61jL3Wx-xCL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="skull_image" width="60px" />
+    <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="60px" />
 
     <div" class="group-container">
       <h5>Set mouth angle: <span id="range-value"></span></h5>
