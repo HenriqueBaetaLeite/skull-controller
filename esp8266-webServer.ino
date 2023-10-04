@@ -36,15 +36,19 @@ void openClose(int delayTime = 30)
 
 void skullLaughing()
 {
-  for (int servoPosition = 50; servoPosition <= 130; servoPosition += 1)
+  for (int index = 0; index < 5; index += 1)
   {
-    myservo.write(servoPosition);
-    delay(5);
-  }
-  for (int servoPosition = 130; servoPosition >= 50; servoPosition -= 1)
-  {
-    myservo.write(servoPosition);
-    delay(5);
+
+    for (int servoPosition = 50; servoPosition <= 130; servoPosition += 1)
+    {
+      myservo.write(servoPosition);
+      delay(2);
+    }
+    for (int servoPosition = 110; servoPosition >= 30; servoPosition -= 1)
+    {
+      myservo.write(servoPosition);
+      delay(5);
+    }
   }
 }
 
@@ -77,7 +81,7 @@ void controlServo()
   }
   else if (chosenFunction == "3")
   {
-    myservo.write(90);
+    skullLaughing();
   }
   else if (chosenFunction == "4")
   {
