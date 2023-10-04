@@ -28,6 +28,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin-top: -20px;
       }
 
       .btn-container {
@@ -59,15 +60,18 @@
         transition: 0.2s ease-in-out;
       }
 
-      p,
       h1,
       h5 {
-        margin-top: 20px;
+        margin-top: 30px;
       }
 
       .my-btn {
         margin: 7px;
         border-radius: 12px;
+      }
+
+      footer {
+        margin: 100px;
       }
     </style>
   </head>
@@ -75,7 +79,7 @@
   <body>
     <h1>The Skull Controller</h1>
     
-    <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="60px" />
+    <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="90px" />
 
     <div" class="range-container">
       <h5>Set mouth angle: <span id="range-value"></span></h5>
@@ -124,6 +128,10 @@
         Close
       </button>
     </section>
+
+    <footer>
+      Created by <a href="https://www.linkedin.com/in/henriquebaetaleite/" target="_blank">Henrique Baêta</a> | 2023
+    </footer>
 
     <script>
       function sendRangeData(position) {
