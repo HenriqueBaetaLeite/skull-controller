@@ -24,16 +24,26 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         flex-direction: column;
       }
 
-      .group-container {
+      .range-container {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin-top: -20px;
+      }
+
+      .btn-container {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: #000000 solid 1px;
       }
 
       input[type="range"] {
         -webkit-appearance: none;
-        width: 100%;
+        width: 90%;
+        margin-bottom: 40px;
       }
 
       input[type="range"]::-webkit-slider-runnable-track {
@@ -53,15 +63,20 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         transition: 0.2s ease-in-out;
       }
 
-      p,
-      h1,
+      h1 {
+        margin-top: 60px;
+      }
       h5 {
-        margin-top: 20px;
+        margin-top: 30px;
       }
 
       .my-btn {
         margin: 7px;
         border-radius: 12px;
+      }
+
+      footer {
+        margin: 100px;
       }
     </style>
   </head>
@@ -69,9 +84,9 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
   <body>
     <h1>The Skull Controller</h1>
     
-    <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="60px" />
+    <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="90px" />
 
-    <div" class="group-container">
+    <div" class="range-container">
       <h5>Set mouth angle: <span id="range-value"></span></h5>
 
       <input
@@ -85,7 +100,7 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
     </div>
 
     <h5>Set skull functions</h4>
-    <section class="group-container">
+    <section class="btn-container">
       <button
         type="button"
         onclick="setSkullNumberFunction(1)"
@@ -107,7 +122,7 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         onclick="setSkullNumberFunction(3)"
         class="btn btn-outline-dark my-btn"
       >
-        Half
+        Talking
       </button>
 
       <button
@@ -118,6 +133,10 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         Close
       </button>
     </section>
+
+    <footer>
+      Created by <a href="https://www.linkedin.com/in/henriquebaetaleite/" target="_blank">Henrique Baêta</a> | 2023
+    </footer>
 
     <script>
       function sendRangeData(position) {
