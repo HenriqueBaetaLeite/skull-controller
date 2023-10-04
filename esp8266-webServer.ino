@@ -118,7 +118,6 @@ void setup()
     Serial.println("MDNS responder started");
   }
 
-  // Initialize Webserver
   server.on("/", handleRoot);
   server.on("/setRange", handleServo);
   server.on("/setServoFunction", controlServo);
