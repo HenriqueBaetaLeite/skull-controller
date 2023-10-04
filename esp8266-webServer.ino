@@ -22,7 +22,7 @@ ESP8266WebServer server(80);
 
 String servoState = "OFF";
 
-void functionOpenClose(servoPosition: int, delayTime: int = 30)
+void functionOpenClose(delayTime: int = 30)
 {
   for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
   {
@@ -55,38 +55,32 @@ void controlServo()
 {
   String chosenFunction = server.arg("setFunction");
   Serial.println(chosenFunction);
-  int servoPosition;
   if (chosenFunction == "1")
   {
-    servoState = servoPosition;
-    functionOpenClose(servoPosition);
+    functionOpenClose();
   }
   else if (chosenFunction == "2")
   {
-    servoState = servoPosition;
     myservo.write(0);
   }
   else if (chosenFunction == "3")
   {
-    servoState = servoPosition;
     myservo.write(90);
   }
   else if (chosenFunction == "4")
   {
-    servoState = servoPosition;
     myservo.write(180);
   }
   else if (chosenFunction == "5")
   {
-    servoState = servoPosition;
-    int superSlow = 5;
+    int superSlow = 50;
     functionOpenClose(servoPosition, superSlow);
   }
   else
   {
     servoState = "OFF";
   }
-  server.send(200, "text/plain", servoState);
+  server.send(200, "text/plain", "");
 }
 
 void setup()
@@ -98,7 +92,6 @@ void setup()
 
   Serial.print("Trying to connect on: ");
   Serial.print(ssid);
-  Serial.print("...");
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
