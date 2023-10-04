@@ -4,7 +4,7 @@
 #include <ESP8266mDNS.h>
 #include <Servo.h>
 
-#include "PageIndex.h";
+#include "PageIndex.h"
 
 #define ServoPort D5
 
@@ -22,16 +22,29 @@ ESP8266WebServer server(80);
 
 void openClose(int delayTime = 30)
 {
-  int servoPosition = 0;
-  for (servoPosition = 0; servoPosition <= 180; servoPosition += 1)
+  for (int servoPosition = 0; servoPosition <= 180; servoPosition += 1)
   {
     myservo.write(servoPosition);
     delay(delayTime);
   }
-  for (servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
+  for (int servoPosition = 180; servoPosition >= 0; servoPosition -= 1)
   {
     myservo.write(servoPosition);
     delay(delayTime);
+  }
+}
+
+void skullLaughing()
+{
+  for (int servoPosition = 50; servoPosition <= 130; servoPosition += 1)
+  {
+    myservo.write(servoPosition);
+    delay(5);
+  }
+  for (int servoPosition = 130; servoPosition >= 50; servoPosition -= 1)
+  {
+    myservo.write(servoPosition);
+    delay(5);
   }
 }
 
