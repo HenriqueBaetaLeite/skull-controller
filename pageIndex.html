@@ -23,11 +23,18 @@
         flex-direction: column;
       }
 
-      .group-container {
+      .range-container {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: #000000 solid 1px;
       }
 
       input[type="range"] {
@@ -70,7 +77,7 @@
     
     <img src="https://raw.githubusercontent.com/HenriqueBaetaLeite/skull-controller/layout-v2.1/skull.png" alt="skull_image" width="60px" />
 
-    <div" class="group-container">
+    <div" class="range-container">
       <h5>Set mouth angle: <span id="range-value"></span></h5>
 
       <input
@@ -84,7 +91,7 @@
     </div>
 
     <h5>Set skull functions</h4>
-    <section class="group-container">
+    <section class="btn-container">
       <button
         type="button"
         onclick="setSkullNumberFunction(1)"
@@ -106,7 +113,7 @@
         onclick="setSkullNumberFunction(3)"
         class="btn btn-outline-dark my-btn"
       >
-        Half
+        Talking
       </button>
 
       <button
