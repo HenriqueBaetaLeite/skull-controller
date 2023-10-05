@@ -20,8 +20,25 @@ Servo myservo;
 
 ESP8266WebServer server(80);
 
+int getServoPosition()
+{
+  return myservo.read();
+}
+
+void setServoToZero()
+{
+  int position = getServoPosition();
+  int delayTime = 60;
+  for (position; position >= 0; position -= 1)
+  {
+    myservo.write(position);
+    delay(delayTime);
+  }
+}
+
 void openClose(int delayTime = 30)
 {
+  setServoToZero();
   for (int servoPosition = 0; servoPosition <= 180; servoPosition += 1)
   {
     myservo.write(servoPosition);
@@ -36,6 +53,7 @@ void openClose(int delayTime = 30)
 
 void skullLaughing()
 {
+  setServoToZero();
   for (int index = 0; index < 5; index += 1)
   {
 
