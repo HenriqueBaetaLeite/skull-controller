@@ -10,5 +10,5 @@ habilidades para incorporar esse caveira. Com um servo motor e um microcontrolad
 ESP8266, com um servidor web local rodando, tenho uma página HTML onde consigo controlar os movimentos
 da mandíbula.
 
-O arquivo principal, para ser carregado no microcontrolador é o `esp8266-webServer.ino`, o restante serve
+O arquivo principal, para ser carregado no microcontrolador é o `esp8266-webServer.ino`, junto com o arquivo `index.h`, o restante serve
 como apoio para criar, refatorar, dar manutenção com mais facilidade.
