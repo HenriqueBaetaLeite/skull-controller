@@ -2,7 +2,7 @@
 
 Em construção ...
 
-Este projeto consiste num modelo feito com impressora 3d, de um door knocker, um batedor de porta
+Este projeto consiste num modelo feito com impressora 3d, de um ´door knocker´, um batedor de porta
 em formato de caveira, onde o maxilar inferior serve como batedor. (https://platform.stlflix.com/product/pirate-skull-sigil-door-knocker).
 
 Decidi nao usar como batedor e sim como um enfeite de parede. Porém resolvi usar a tecnologia e minhas
