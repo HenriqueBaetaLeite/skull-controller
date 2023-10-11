@@ -76,6 +76,51 @@
       footer {
         margin-top: 100px;
       }
+
+      .speedo {
+        width: 200px;
+        height: 90px;
+        margin: 100px auto 30px auto;
+        overflow: hidden;
+      }
+
+      .face {
+        width: 200px;
+        height: 200px;
+        border: solid 40px #fff;
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .needle {
+        width: 5px;
+        height: 80px;
+        background: #dd2f2f;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-top-left-radius: 100%;
+        border-top-right-radius: 100%;
+        display: inline-block;
+        left: 55px;
+        position: absolute;
+        top: -33px;
+        transform-origin: bottom;
+      }
+
+      .needle-mov {
+        -webkit-animation: moveNeedle 2s;
+        transform: rotate(0deg);
+      }
+
+      @-webkit-keyframes moveNeedle {
+        0% {
+          transform: rotate(-90deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+
     </style>
   </head>
 
@@ -87,6 +132,13 @@
     <div" class="range-container">
       <h5>Set mouth angle: <span id="range-value"></span></h5>
 
+
+      <div class="speedo">
+        <div class="face">
+          <div class="needle needle-mov"></div>
+        </div>
+      </div>
+    
       <input
         type="range"
         min="0"
@@ -148,11 +200,15 @@
       const slider = document.getElementById("range-slider");
       const rangeSpan = document.getElementById("range-value");
 
+      const needle = document.getElementsByClassName("needle")[0];
+      const needleMov = document.getElementsByClassName("needle-mov")[0];
+
       rangeSpan.innerHTML = slider.value;
 
       slider.oninput = function () {
         rangeSpan.innerHTML = this.value;
         sendRangeData(rangeSpan.innerHTML);
+        needleMov.style.webkitTransform = 'rotate('+(this.value-90)+'deg)';
       };
     </script>
   </body>
