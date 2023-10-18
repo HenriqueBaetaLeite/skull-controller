@@ -113,6 +113,10 @@ void controlServo()
   server.send(200, "text/plain", "");
 }
 
+IPAddress subnet(255, 255, 0, 0);
+IPAddress gateway(192, 168, 1, 1);
+IPAddress local_IP(192, 168, 1, 184);
+
 void setup()
 {
   Serial.begin(115200);
@@ -123,7 +127,16 @@ void setup()
   Serial.print("Trying to connect on: ");
   Serial.print(ssid);
 
-  WiFi.mode(WIFI_STA);
+  if (WiFi.config(local_IP, gateway, subnet))
+  {
+    Serial.println("Static IP Configured");
+  }
+  else
+  {
+    Serial.println("Static IP Configuration Failed");
+  }
+
+  // WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED)
