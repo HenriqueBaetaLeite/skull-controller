@@ -12,3 +12,7 @@ da mandíbula.
 
 O arquivo principal, para ser carregado no microcontrolador é o `esp8266-webServer.ino`, junto com o arquivo `index.h`, o restante serve
 como apoio para criar, refatorar, dar manutenção com mais facilidade.
+
+
+##### Referências
+https://forum.arduino.cc/t/getting-a-fixed-static-ip-address-for-esp8266/921276
