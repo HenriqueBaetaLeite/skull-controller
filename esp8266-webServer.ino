@@ -13,8 +13,8 @@
 #define STAPSK "senha123456789"
 #endif
 
-int open = 80;
-int close = 0;
+int opened = 60;
+int closed = 0;
 
 const char *ssid = STASSID;
 const char *password = STAPSK;
@@ -42,33 +42,33 @@ void setMouthClosed()
 void openClose(int delayTime = 30)
 {
   setMouthClosed();
-  for (int servoPosition = 0; servoPosition <= 80; servoPosition += 1)
+  for (int servoPosition = 0; servoPosition <= 50; servoPosition += 1)
   {
     myservo.write(servoPosition);
     delay(delayTime);
   }
-  for (int servoPosition = 80; servoPosition >= 0; servoPosition -= 1)
+  for (int servoPosition = 50; servoPosition >= 0; servoPosition -= 1)
   {
     myservo.write(servoPosition);
     delay(delayTime);
   }
 }
 
-void skullLaughing()
+void skullTalking()
 {
   setMouthClosed();
   for (int index = 0; index < 5; index += 1)
   {
 
-    for (int servoPosition = 50; servoPosition <= 80; servoPosition += 1)
+    for (int servoPosition = 10; servoPosition <= 50; servoPosition += 1)
     {
       myservo.write(servoPosition);
       delay(1);
     }
-    for (int servoPosition = 80; servoPosition >= 30; servoPosition -= 1)
+    for (int servoPosition = 50; servoPosition >= 25; servoPosition -= 1)
     {
       myservo.write(servoPosition);
-      delay(3);
+      delay(1);
     }
   }
 }
@@ -98,15 +98,15 @@ void controlServo()
   }
   else if (chosenFunction == "2")
   {
-    myservo.write(0);
+    myservo.write(closed);
   }
   else if (chosenFunction == "3")
   {
-    skullLaughing();
+    skullTalking();
   }
   else if (chosenFunction == "4")
   {
-    myservo.write(80);
+    myservo.write(opened);
   }
   else if (chosenFunction == "5")
   {

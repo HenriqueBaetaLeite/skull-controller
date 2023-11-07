@@ -160,6 +160,14 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         Open/Close
       </button>
 
+       <button
+        type="button"
+        onclick="setSkullNumberFunction(4)"
+        class="btn btn-outline-dark my-btn"
+      >
+        Open Mouth
+      </button>
+
       <button
         type="button"
         onclick="setSkullNumberFunction(2)"
@@ -176,13 +184,7 @@ const char MAIN_page[] PROGMEM = R"rawliteral(
         Talking
       </button>
 
-      <button
-        type="button"
-        onclick="setSkullNumberFunction(4)"
-        class="btn btn-outline-dark my-btn"
-      >
-        Open Mouth
-      </button>
+     
     </section>
 
     <footer>
